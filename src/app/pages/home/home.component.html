@@ -1,0 +1,64 @@
+<h2 class="mt-3">HOME</h2>
+<div class="row">
+    <div class="col">
+        <h3>Random image with Dynamic [src]</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum molestias quod praesentium veritatis pariatur
+            similique corrupti. Adipisci quo esse accusantium sapiente quae quam optio, recusandae, quidem eligendi,
+            veritatis labore at.</p>
+    </div>
+    <div class="col"><img [src]="'./assets/images/' + sourceImage" class="img-fluid" alt="Sunrise"
+            (click)="console(sourceImage)" /></div>
+</div>
+<div class="row mt-3"><h3>Random image using (mouseover) & (mouseout)</h3><img [src]="'./assets/images/' + jsonImages[randomIndex].url" class="img-fluid"
+        [alt]="jsonImages[randomIndex].title" (mouseover)="changeRandom()" (mouseout)="changeRandom()" /></div>
+        <div class="row mt-3">
+            <h3>Dynamic style using [ngStyle]</h3>
+<p [ngStyle]=" {'color': valColor } " (click)=" valColor='green'; ">Lorem ipsum dolor sit amet consectetur adipisicing
+    elit. Dolores nesciunt sequi placeat vero est eaque accusamus tempore culpa aspernatur molestiae? Ex facere maiores
+    quas. Et harum enim minima alias fugit.</p>
+</div>
+<div class="row mt-3">
+    <h3>Dynamic class using [ngClass]</h3>
+    <button (click)=" textPrimary=!textPrimary ">Change the parag class</button>
+<p [ngClass]=" {'text-primary': textPrimary } ">Lorem ipsum dolor sit amet consectetur adipisicing
+elit. Dolores nesciunt sequi placeat vero est eaque accusamus tempore culpa aspernatur molestiae? Ex facere maiores
+quas. Et harum enim minima alias fugit.</p>
+</div>
+<div class="row mt-3">
+    <h3>Dynamic display *ngIf</h3>
+    <button (click)=" displayParag=!displayParag ">Change the parag display condition</button>
+<p *ngIf="displayParag; else otherParag">Lorem ipsum dolor sit amet consectetur adipisicing
+elit. Dolores nesciunt sequi placeat vero est eaque accusamus tempore culpa aspernatur molestiae? Ex facere maiores
+quas. Et harum enim minima alias fugit.</p>
+
+<ng-template #otherParag>
+    <p>Ceci est un autre paragraphe...</p>
+</ng-template>
+
+</div>
+<div class="row mt-3">
+    <h3>Dynamic display [ngSwitch] *ngSwitchCase</h3>
+    <div [ngSwitch]="displaySwitch">
+        <p *ngSwitchCase="1">Parag 1</p>
+        <p *ngSwitchCase="2">Parag 2</p>
+        <p *ngSwitchCase="3">Parag 3</p>
+    </div>
+    <button class="btn-primary" (click)="incSwitch()">Click to Switch</button>
+</div>
+<div class="row mt-3">
+    <h3>Dynamic display *ngFor on Array</h3>
+    <ul>
+        <li *ngFor="let line of arrayImages">Line for {{line}}<br>
+            <img [src]="'./assets/images/' + line" width="40" />
+        </li>
+    </ul>
+</div>
+<div class="row mt-3">
+    <h3>Dynamic display *ngFor on Json data</h3>
+    <ul class="row">
+        <li class="col list-unstyled" *ngFor="let img of jsonImages">Line for {{img.title}}<br>
+            <img [src]="'./assets/images/' + img.url" width="80" /><br>
+            <span>{{img.author}}</span>
+        </li>
+    </ul>
+</div>
