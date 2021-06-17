@@ -6,10 +6,13 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
+
+
 export class AboutComponent implements OnInit {
 
   galery: any;
   page = 1;
+  inc = 1;
 
 
   constructor(private http: HttpClient) { }
@@ -37,11 +40,19 @@ export class AboutComponent implements OnInit {
         this.galery = data;
         console.log(this.galery);
       }
-    )
+    ) 
+  }
+  
+  bidule(){
+    console.log(`Hello World ${this.inc++}` );
   }
 
   ngOnInit(): void {
     this.loadPics();
-  }
+    console.log(`Hello World ${this.inc}` );
+    window.addEventListener('scroll', () => {
+      this.bidule();
+    }, true); //third parameter
+  } 
 
 }
