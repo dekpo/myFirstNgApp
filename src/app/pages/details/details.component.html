@@ -9,7 +9,7 @@
         <li class="list-group-item">Width: {{infoPhoto?.width}}</li>
         <li class="list-group-item">Height: {{infoPhoto?.height}}</li>
         <li class="list-group-item">Url: <a [href]="'infoPhoto?.url'" _target="blank">{{infoPhoto?.url}}</a></li>
-        <li class="list-group-item text-center"><button class="btn btn-primary btn-lg" [routerLink]="'/about/' + paramPage">Back to Gallery</button></li>
+        <li class="list-group-item text-center"><button class="btn btn-primary btn-lg" (click)="goBackToGallery()">Back to Gallery</button></li>
       </ul>
     </div>
   </div>
