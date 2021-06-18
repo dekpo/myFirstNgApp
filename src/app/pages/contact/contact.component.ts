@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-contact',
@@ -12,7 +16,7 @@ export class ContactComponent implements OnInit {
   email = '';
   message = '';
 
-  constructor() { }
+  constructor(private http:HttpClient,private router:Router) { }
 
   onSubmit(formData: any) {
 
@@ -45,6 +49,23 @@ export class ContactComponent implements OnInit {
 
     if (validation) {
       console.log('Sending Data:', formData);
+
+      const headers = new HttpHeaders()
+      .set('Content-Type','application:x-www-form-urlencoded');
+
+      this.http.post("https://httpbin.org/post",formData,{headers}).subscribe(
+        (response) => {
+          console.log('RETOUR PAR LE SERVEUR DISTANT YOUHOUHOU !!!',response);
+          if (response) {
+            console.log('OK ON EST BON');
+            // on redirige vers une autre page de l'app
+            this.router.navigateByUrl('/about');
+            // redirection javaScript vanille ;)
+            // window.location.href = "https://google.fr";
+          }
+        }
+      )
+
     } else {
       alert('Error validating your form !!!\n' + errorMessage);
     }
