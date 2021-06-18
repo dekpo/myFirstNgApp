@@ -53,8 +53,9 @@ export class AboutComponent implements OnInit {
   ngOnInit(): void {
     this.paramPage = this.route.snapshot.params.pageId;
     console.log(`Param Page ${this.paramPage}`);
+
     if (this.paramPage!=undefined){
-      this.loadPics('',Number(this.paramPage));
+      this.loadPics('', Number(this.paramPage) );
     } else {
       this.loadPics();
     }

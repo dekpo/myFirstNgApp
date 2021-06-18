@@ -1,1 +1,23 @@
 <h2>HERE IS MY CONTACT PAGE</h2>
+<div class="row mt-3">
+    <form #myForm="ngForm" (ngSubmit)="onSubmit( myForm.value )">
+        <div class="form-group">
+          <label for="firstname">Firstname*</label>
+          <input type="text" [(ngModel)]="firstname" name="firstname" class="form-control" id="firstname" placeholder="Enter firstname" required>
+        </div>
+        <div class="form-group">
+          <label for="lastname">Lastname*</label>
+          <input type="text" [(ngModel)]="lastname" name="lastname" class="form-control" id="lastname" placeholder="Enter lastname" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email*</label>
+            <input type="email" [(ngModel)]="email" name="email" class="form-control" id="email" placeholder="Enter email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea type="text" [(ngModel)]="message" name="message" class="form-control" id="message" placeholder="Enter message">
+            </textarea>
+          </div>
+        <button type="submit" [disabled]="!myForm.valid" class="btn btn-primary">Submit</button>
+      </form>
+</div>
