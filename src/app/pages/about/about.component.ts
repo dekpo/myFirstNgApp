@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router,ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-about',
@@ -13,9 +15,10 @@ export class AboutComponent implements OnInit {
   galery: any;
   page = 1;
   inc = 1;
+  paramPage = '';
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private route:ActivatedRoute) { }
 
   loadPics(way='',nb=this.page){
     // évalue la valeur de 'way'
@@ -43,16 +46,22 @@ export class AboutComponent implements OnInit {
     ) 
   }
   
-  bidule(){
+  biduleScroll(){
     console.log(`Hello World ${this.inc++}` );
   }
 
   ngOnInit(): void {
-    this.loadPics();
-    console.log(`Hello World ${this.inc}` );
-    window.addEventListener('scroll', () => {
-      this.bidule();
-    }, true); //third parameter
+    this.paramPage = this.route.snapshot.params.pageId;
+    console.log(`Param Page ${this.paramPage}`);
+    if (this.paramPage!=undefined){
+      this.loadPics('',Number(this.paramPage));
+    } else {
+      this.loadPics();
+    }
+    console.log(`Page ${this.page}` );
+    /* window.addEventListener('scroll', () => {
+      this.biduleScroll();
+    }, true); */
   } 
 
 }
